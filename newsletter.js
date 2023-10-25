@@ -1,24 +1,22 @@
-var NewsletterForm = /** @class */ (function () {
-    function NewsletterForm() {
-        this.formElement = document.querySelector('form');
-        this.subscribeButton = document.querySelector('#submit');
-        this.newsletterContainer = document.querySelector('.newsletter');
-        this.messageContainer = document.querySelector('.message');
-        if (this.formElement && this.subscribeButton && this.newsletterContainer && this.messageContainer) {
-            this.subscribeButton.addEventListener('click', this.handleSubscribe.bind(this));
-        }
-    }
-    NewsletterForm.prototype.handleSubscribe = function (event) {
-        event.preventDefault();
-        // Hide the newsletter container and show the message container
-        if (this.newsletterContainer && this.messageContainer) {
-            this.newsletterContainer.style.display = 'none';
-            this.messageContainer.style.display = 'block';
-        }
-        // Rest of your form submission logic can go here
-    };
-    return NewsletterForm;
-}());
-document.addEventListener('DOMContentLoaded', function () {
-    new NewsletterForm();
+var newsletter = document.querySelector(".newsletter");
+var successMessage = document.querySelector(".message");
+var dismissButton = document.querySelector('input[type="submit"]');
+var emailInput = document.querySelector('input[type="text"]');
+var userEmailspan = document.getElementById("user_email");
+var subscriptionBtn = document.querySelector("#submit");
+subscriptionBtn === null || subscriptionBtn === void 0 ? void 0 : subscriptionBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    showSuccessMessage();
 });
+// show success message hide newsletter
+function showSuccessMessage() {
+    newsletter.style.display = "none";
+    successMessage.style.display = "block";
+    userEmailspan.innerText = emailInput.value;
+}
+if (dismissButton) {
+    dismissButton.addEventListener("click", function () {
+        successMessage.style.display = "none";
+        newsletter.style.display = "block";
+    });
+}
